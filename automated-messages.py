@@ -38,15 +38,15 @@ def send_sms(number,msg,url):
             )
 
 def find_week_from_string(d):
-    day = d[0:2]
-    week = d[3:5]
-    year = d[6:]
+    due_day = int(d[0:2])
+    due_month = int(d[3:5])
+    due_year = int(d[6:])
     
-    duedate = datetime.date(year,week,day)
+    duedate=datetime.date(due_year,due_month,due_day)
     today = datetime.date.today()
     
     difference = duedate-today
-    days_elapsed = 280-difference
+    days_elapsed = 280-difference.days
     week = (days_elapsed//7)+1
 
     return week
