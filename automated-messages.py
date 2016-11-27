@@ -50,7 +50,7 @@ weekly_symptoms={1:{"Physical":"Vomiting, nausea, Gas, Constipation, Mood-swings
                      "Precautions":"Get the anatomical scan, take lean meat and low-fat dairy"},
                  18:{"Physical":"Growing Appetite, Snoring, Periodic pain in legs, loose teeth",
                      "Precautions":"check up with a periodonitis. Use heating pad or back streches to ease the pain"},
-                 19:{"Physical":"Round ligament pain,Hair loss",
+                 19:{"Physical":"Round ligament pain, Hair loss",
                      "Precautions":"Take ginger and peppermint, if round ligament pains last even after resting, contact your doctor"},
                  20:{"Physical":"Food cravings, Braxton-Hicks contractions",
                      "Precautions":"Make sure to take the anatomical scan. Any strong, painful , or regular contractions could be signs of preterm birth"},
@@ -102,6 +102,7 @@ def send_sms(number,msgs):
             client.messages.create(
                 to = number,
                 from_ = n,
+                body = "This is what your baby looks like:",
                 media_url = msg,
                 )
         else:
@@ -131,7 +132,7 @@ def find_week_info(duedate):
     days_elapsed = 280-difference.days
     week = (days_elapsed//7)+1
 
-    welcome = "Week " + str(week) + " of pregnancy!"
+    welcome = "You are in week " + str(week) + " of your pregnancy!"
     symptoms = "Symptoms:\n"+weekly_symptoms[week]["Physical"]
     precautions = "Precautions:\n"+weekly_symptoms[week]["Precautions"]
     if week==1:
